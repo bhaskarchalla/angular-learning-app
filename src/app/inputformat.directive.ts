@@ -24,8 +24,8 @@ private inputformater(input: string, location: string): string{
   let maxDecimalPosition = 3;
   let decimalSplitterCount = 0;
   let thousendSplitterCount = 0;
-  let decimalIndex = -1;
-  let thousendIndex = -1;
+  let decimalIndex = 0;
+  let thousendIndex = 0;
   switch (location) {
     case 'UK':
       decimalSplitter = ',';
