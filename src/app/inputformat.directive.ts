@@ -14,10 +14,10 @@ export class InputformatDirective {
 }
 
 @HostListener('focusout') onMouseLeave() {
-  this.el.nativeElement.value =this.inputformater(this.appInputformat, this.locationinfo);
+  this.el.nativeElement.value =this.inputformater(this.el.nativeElement.value, this.locationinfo);
 }
 
-private inputformater(input: string, location: string): string{
+public inputformater(input: string, location: string): string{
   let tempValue = input;
   let decimalSplitter = '.';
   let thousendSplitter = ',';
@@ -47,6 +47,7 @@ private inputformater(input: string, location: string): string{
 
   let position = 0;
   let position1 = 0;
+  var bindValue ='';
   for (var x = input.length - 1; x >= 0; x--) {
     let letter = input[x];
     position++;
@@ -72,7 +73,32 @@ private inputformater(input: string, location: string): string{
       }
     }
   }
+  // Binding value
+  var initialvalue = input.replaceAll(thousendSplitter, '');
+  if(decimalIndex)
+  {
+      bindValue = initialvalue.slice(initialvalue.length-decimalIndex, initialvalue.length);
+      if(bindValue.replaceAll('0','').length === 1){
+        bindValue = '';
+      }
+      if(location ==='UK'){
+        bindValue = bindValue.replaceAll(decimalSplitter,'.')
+      }
+  }
+
+  let thousendPosition = 1;
+  let index = 0;
+  for (var x = initialvalue.length-decimalIndex - 1; x >= 0; x--) {
+    index++;
+    let letter = initialvalue[x];
+
+    bindValue = letter + bindValue;
+    if(thousendPosition*3 === index && initialvalue.length !== index){
+      bindValue ="," + bindValue;
+      thousendPosition++;
+    }
+  }
   this.el.nativeElement.style.color = 'Green';
-  return input;
+  return bindValue;
 }
 }

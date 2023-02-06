@@ -6,6 +6,16 @@
   <input type="radio" name="location" (click)="location='UK'" [checked]="location=='UK'">UK
 </div>
 <br/>
+
+<h3><i>With ngModel</i></h3>
 <input type="text" [(ngModel)]="userInput" [appInputformat]="userInput" [locationinfo]="location" />
+
+<br/>
+<br/>
+<h3><i>FormControl in a FormGroup</i></h3>
+<form [formGroup]="form">
+  <input type="text" formControlName="userInput_form" [appInputformat]="userInput_form" [locationinfo]="location" />
+<br>
+</form>
 
 <router-outlet></router-outlet>

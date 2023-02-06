@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,11 @@ export class AppComponent {
   color = '';
   location = 'US';
   userInput ='';
+  form = new FormGroup({
+    userInput_form: new FormControl()
+  });
+
+  get userInput_form(): any {
+    return this.form.get('userInput_form');
+  }
 }
