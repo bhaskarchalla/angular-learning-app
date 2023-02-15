@@ -105,6 +105,9 @@ public inputformater(input: string, location: string): string{
 }
 public inputformater_bind(formValue: any, location: string): void {
   let input = formValue.value;
+  if(!input){
+    return;
+  }
 
   let tempValue = input;
   let decimalSplitter = '.';

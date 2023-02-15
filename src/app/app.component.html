@@ -15,9 +15,9 @@
 <h3><i>FormControl in a FormGroup</i></h3>
 <form [formGroup]="form">
   <input type="text" formControlName="userInput_form" [appInputformat]="userInput_form" [locationinfo]="location" />
-  <br/>bound value: {{form.controls.userInput_form.value}}
-  <br/>status: {{form.controls.userInput_form.status}}
-  <br/>is valid: {{form.controls.userInput_form.valid}}
+    <br/>bound value: {{form.controls.userInput_form.valid ? form.controls.userInput_form.value : ''}}
+    <br/>status: {{form.controls.userInput_form.status}}
+    <br/>is valid: {{form.controls.userInput_form.valid}}
 <br>
 </form>
 
